@@ -1,195 +1,196 @@
 <!DOCTYPE html>
 <html lang="am">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>የኢትዮጵያውያን ሴቶች መደጋገፊያ ማዕከል - ባህሬን</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        body {
-            background-color: #f4f7f6;
-            color: #333;
-            line-height: 1.6;
-        }
-        header {
-            background-color: #1b4332;
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        header h1 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        .container {
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-        .emergency-box {
-            background-color: #d90429;
-            color: white;
-            padding: 25px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-        .emergency-box h2 {
-            margin-bottom: 15px;
-            border-bottom: 2px solid rgba(255,255,255,0.3);
-            padding-bottom: 5px;
-        }
-        .emergency-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-        .phone-card {
-            background: rgba(255,255,255,0.15);
-            padding: 12px;
-            border-radius: 6px;
-            font-weight: bold;
-        }
-        .section {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        .section h2 {
-            color: #1b4332;
-            margin-bottom: 15px;
-        }
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .card {
-            border: 1px solid #e0e0e0;
-            padding: 15px;
-            border-radius: 8px;
-            background: #fafafa;
-        }
-        .card h3 {
-            color: #2d6a4f;
-            margin-bottom: 8px;
-        }
-        .faq-item {
-            margin-bottom: 15px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-        }
-        .faq-item h3 {
-            color: #1b4332;
-            font-size: 1.1rem;
-        }
-        .btn-container {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 15px;
-        }
-        .btn {
-            display: inline-block;
-            padding: 12px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-            text-align: center;
-        }
-        .btn-whatsapp { background-color: #25D366; }
-        .btn-telegram { background-color: #0088cc; }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #1b4332;
-            color: white;
-            margin-top: 40px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>በባህሬን የኢትዮጵያውያን መረጃና ድጋፍ ማዕከል</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      background-color: #1b365d;
+      color: #fff;
+      padding: 25px 15px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+    header p {
+      margin: 5px 0 0 0;
+      font-size: 14px;
+      color: #ddd;
+    }
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #1b365d;
+      border-bottom: 2px solid #1b365d;
+      padding-bottom: 5px;
+      margin-top: 25px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .card {
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .card h3 {
+      margin-top: 0;
+      font-size: 16px;
+      color: #d9534f;
+    }
+    .phone {
+      font-weight: bold;
+      font-size: 18px;
+      color: #28a745;
+      margin: 8px 0;
+    }
+    .card p {
+      font-size: 13px;
+      line-height: 1.5;
+      color: #555;
+    }
+    .info-box {
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-left: 5px solid #1b365d;
+    }
+    .info-box h3 {
+      margin-top: 0;
+      color: #1b365d;
+    }
+    .info-box p, .info-box li {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #444;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: #777;
+      margin-top: 30px;
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <h1>በአረብ ሀገራት የኢትዮጵያውያን ሴቶች መደጋገፊያ ማዕከል</h1>
-        <p>Ethiopian Women’s Support & Information Center in Bahrain</p>
-    </header>
+  <header>
+    <h1>በባህሬን የኢትዮጵያውያን መረጃና ድጋፍ ማዕከል</h1>
+    <p>Ethiopian Community Support & Information Hub in Bahrain</p>
+  </header>
 
-    <div class="container">
+  <div class="container">
 
-        <!-- Emergency Section -->
-        <div class="emergency-box">
-            <h2>የአደጋ ጊዜ እና አስፈላጊ ስልኮች (Emergency Contacts)</h2>
-            <div class="emergency-grid">
-                <div class="phone-card">የኢትዮጵያ ኤምባሲ፡ +973 1771 3000</div>
-                <div class="phone-card">ፖሊስ እና አምቡላንስ፡ 999</div>
-                <div class="phone-card">የሰራተኛ ጥበቃ (LMRA)፡ +973 1750 6055</div>
-                <div class="phone-card">ሰብአዊ መብት ድጋፍ፡ 108</div>
-            </div>
-        </div>
+    <!-- አስቸኳይ ጊዜ ስልኮች -->
+    <div class="section-title">🚨 የአደጋና የአስቸኳይ ጊዜ ስልኮች (Emergency Contacts)</div>
+    <div class="grid">
+      <div class="card">
+        <h3>ፖሊስ / አምቡላንስ / እሳት አደጋ</h3>
+        <div class="phone">999</div>
+        <p>ለማንኛውም አስቸኳይ አደጋ፣ ጥቃት፣ የህክምና እገዛ ወይም ድንገተኛ አደጋ በነጻ የሚደወል ዋና ቁጥር።</p>
+      </div>
 
-        <!-- Services Section -->
-        <div class="section">
-            <h2>የምንሰጣቸው ድጋፎች (Our Services)</h2>
-            <div class="card-grid">
-                <div class="card">
-                    <h3>1. ህጋዊ እና የመብት መረጃ</h3>
-                    <p>ስለ ስራ ኮንትራት፣ የቪዛ ህጎች እና የደሞዝ መብቶች አስፈላጊውን መረጃ እና መመሪያ እንሰጣለን።</p>
-                    <small>Legal & Rights Awareness under Bahraini law.</small>
-                </div>
-                <div class="card">
-                    <h3>2. የማህበራዊ እና ስነ-ልቦና ድጋፍ</h3>
-                    <p>ተስፋ መቁረጥ፣ ውጥረት ወይም ማንኛውም ችግር ሲያጋጥም ምስጢር የሚጠብቅ የምክር አገልግሎት።</p>
-                    <small>Confidential counseling and emotional support.</small>
-                </div>
-                <div class="card">
-                    <h3>3. የድንገተኛ ጊዜ መመሪያ</h3>
-                    <p>ፓስፖርት ሲጠፋ፣ አሰሪ ጋር አለመግባባት ሲፈጥር የሚወሰዱ ህጋዊ እርምጃዎች መመሪያ።</p>
-                    <small>Step-by-step procedures for emergency issues.</small>
-                </div>
-            </div>
-        </div>
+      <div class="card">
+        <h3>የሰዎች ዝውውር ጥቆማና መብት ጥሰት</h3>
+        <div class="phone">995</div>
+        <p>የህገ-ወጥ ስራ ማስገደድ፣ የደመወዝ ከልከላ ወይም የአካላዊ ጥቃት ሲደርስብህ የምትደውለው የ LMRA መስመር።</p>
+      </div>
 
-        <!-- FAQ Section -->
-        <div class="section">
-            <h2>ተደጋግመው የሚጠየቁ ጥያቄዎች (FAQ)</h2>
-            <div class="faq-item">
-                <h3>ጥያቄ 1፡ ደሞዝ ሳይከፈለኝ ቢቀር ምን ማድረግ አለብኝ?</h3>
-                <p>መልስ፡ ጉዳዩን ለ LMRA (Labor Market Regulatory Authority) ማመልከት እና ለኤምባሲው ማሳወቅ ይቻላል።</p>
-            </div>
-            <div class="faq-item">
-                <h3>ጥያቄ 2፡ ፓስፖርቴ ቢጠፋብኝስ?</h3>
-                <p>መልስ፡ መጀመሪያ ለፖሊስ ማሳወቅ እና የፖሊስ ሪፖርት በመያዝ ወደ ኤምባሲ ማመልከት ያስፈልጋል።</p>
-            </div>
-        </div>
-
-        <!-- Contact Section -->
-        <div class="section">
-            <h2>እኛን ለማግኘት (Contact Us)</h2>
-            <p>ለማንኛውም ጥያቄ ወይም ድጋፍ በታች ባሉት አማራጮች ያግኙን፦</p>
-            <div class="btn-container">
-                <a href="https://wa.me/" class="btn btn-whatsapp" target="_blank">WhatsApp ላይ ያውሩ</a>
-                <a href="https://t.me/" class="btn btn-telegram" target="_blank">ቴሌግራም ቻናል</a>
-            </div>
-        </div>
-
+      <div class="card">
+        <h3>የትራፊክ አደጋ (Traffic Emergency)</h3>
+        <div class="phone">199</div>
+        <p>የመኪና አደጋ ወይም መንገድ ላይ ድንገተኛ ችግር ሲያጋጥም የሚደወል ቁጥር።</p>
+      </div>
     </div>
 
-    <footer>
-        <p>&copy; የኢትዮጵያውያን ሴቶች መደጋገፊያ ማዕከል - ባህሬን</p>
-    </footer>
+    <!-- የሆስፒታሎችና ህክምና መረጃ -->
+    <div class="section-title">🏥 የሆስፒታሎችና የህክምና ማዕከላት ስልኮች</div>
+    <div class="grid">
+      <div class="card">
+        <h3>ሳልማኒያ ህክምና ማዕከል (Salmaniya Hospital)</h3>
+        <div class="phone">+973 1728 8888</div>
+        <p>በማናማ የሚገኝ ትልቁ የመንግስት ሆስፒታል (ለአስቸኳይ ህክምናና ድንገተኛ አደጋዎች)።</p>
+      </div>
+
+      <div class="card">
+        <h3>ኪንግ ሀማድ ዩኒቨርሲቲ ሆስፒታል</h3>
+        <div class="phone">+973 1744 4444</div>
+        <p>በሙሃራቅ የሚገኝ ትልቅ የመንግስት ህክምና ማዕከል።</p>
+      </div>
+    </div>
+
+    <!-- የቪዛ፣ ህግና የስራ ጉዳዮች (LMRA & Flexi/LMRA Status) -->
+    <div class="section-title">📄 የቪዛ፣ የስራና የህግ መረጃዎች (LMRA & Visa Issues)</div>
+    
+    <div class="info-box">
+      <h3>1. የሰራተኞች ጥProtectionና የስራ አካል (LMRA - Labour Market)</h3>
+      <p><strong>ስልክ ቁጥር፦</strong> <span class="phone">+973 1750 6055</span></p>
+      <p><strong>ዋና አገልግሎቶች፦</strong></p>
+      <ul>
+        <li>የስራ ቪዛህን/ቃማህን (Work Permit Status) ሁኔታ ማረጋገጥ።</li>
+        <li>የአላማሬ (የቀጣሪ) እና የሰራተኛ አለመግባባቶች ሲፈጠሩ አቤቱታ ማቅረብ።</li>
+        <li>ያለአግባብ ስራ ማቆም (Absconding/Runaway) ተብሎ ከተመዘገበብህ ማጣራት።</li>
+      </ul>
+    </div>
+
+    <div class="info-box">
+      <h3>2. የአላማሬ (የቀጣሪ) እና የቪዛ ሁኔታ መመሪያዎች</h3>
+      <ul>
+        <li><strong>የቪዛ ሁኔታህን ማረጋገጥ፦</strong> በየጊዜው በ LMRA ድህረ ገጽ (lmra.gov.bh) ላይ ፓስፖርት ቁጥርህን በማስገባት ቪዛህ ህጋዊ መሆኑን አረጋግጥ።</li>
+        <li><strong>ፓስፖርት መያዝ፦</strong> በቀጣሪ (አላማሬ) ፓስፖርት መያዝ በባህሬን ህግ የተከለከለ ነው። ችግር ካጋጠመህ ለ LMRA (995) ሪፖርት ማድረግ ትችላለህ።</li>
+        <li><strong>ደመወዝ አለመከፈል፦</strong> የባህሬን Wage Protection System ስላለ ደመወዝ ካልተከፈለህ እስከ 3 ወር ሳትጠብቅ አቤቱታ አቅርብ።</li>
+      </ul>
+    </div>
+
+    <!-- የኤምባሲና የቆንስላ መረጃ -->
+    <div class="section-title">🇪🇹 የኢትዮጵያ ኤምባሲና የቆንስላ ድጋፍ</div>
+    <div class="info-box">
+      <h3>የኤምባሲና የህግ ድጋፍ መረጃ</h3>
+      <p>ባህሬን ውስጥ የኢትዮጵያ ኤምባሲ ቀጥታ ባለመኖሩ አብዛኛዎቹ የባህሬን ኢትዮጵያውያን አገልግሎት የሚያገኙት በዶሃ (ካታር) ወይም በሪያድ በሚገኙ ኤምባሲዎች እና በባህሬን ባሉ የህብረተሰብ ተወካዮች/ቆንስላዎች በኩል ነው፦</p>
+      <ul>
+        <li><strong>የካታር ኤምባሲ ስልክ (ለባህሬን የሚሸፍን)፦</strong> +974 4020 7000</li>
+        <li><strong>የሳኡዲ (ሪያድ) ኤምባሲ ስልክ፦</strong> +966 11 482 3919</li>
+        <li><strong>የውጭ ሀገር ፓስፖርትና የጉዞ ሰነድ (Laissez-Passer)፦</strong> ፓስፖርት የጠፋብህ ወይም ወደ ሀገር መመለስ የምትፈልግ ከሆነ የቆንስላ ወኪሎችን በማነጋገር ጊዜያዊ የጉዞ ሰነድ ማዘጋጀት ይቻላል።</li>
+      </ul>
+    </div>
+
+    <!-- የደህንነት መመሪያዎች -->
+    <div class="section-title">🛡️ ለደህንነትህ የሚረዱ ዋና ዋና መመሪያዎች</div>
+    <div class="info-box">
+      <ul>
+        <li><strong>የሰነድ ኮፒ ይያዙ፦</strong> የፓስፖርትህ እና የ CPR (የባህሬን መታወቂያ) ፎቶ በስልክህ ላይ ወይም በኢሜይልህ ላይ ሁልጊዜ አዘጋጅተህ አስቀምጥ።</li>
+        <li><strong>ያልታወቁ ሊንኮችን አትክፈት፦</strong> የቪዛ ማደሻ ወይም የባንክ መረጃ የሚጠይቁ የሀሰት መልእክቶች ሲመጡ አትክፈታቸው።</li>
+        <li><strong>በአስቸኳይ ጊዜ፦</strong> ማንኛውም አደጋ ሲያጋጥም ወዲያውኑ ወደ <strong>999</strong> በመደወል ያለህበትን ቦታ (Address/Block number) ተናገር።</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Ethiopian Community Support in Bahrain. All rights reserved.</p>
+  </footer>
 
 </body>
 </html>
