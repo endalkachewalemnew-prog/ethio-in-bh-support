@@ -1,196 +1,271 @@
 <!DOCTYPE html>
 <html lang="am">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>በባህሬን የኢትዮጵያውያን መረጃና ድጋፍ ማዕከል</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f4f6f9;
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
-    header {
-      background-color: #1b365d;
-      color: #fff;
-      padding: 25px 15px;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 22px;
-    }
-    header p {
-      margin: 5px 0 0 0;
-      font-size: 14px;
-      color: #ddd;
-    }
-    .container {
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 0 15px;
-    }
-    .section-title {
-      font-size: 18px;
-      font-weight: bold;
-      color: #1b365d;
-      border-bottom: 2px solid #1b365d;
-      padding-bottom: 5px;
-      margin-top: 25px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 15px;
-      margin-top: 15px;
-    }
-    .card {
-      background: #fff;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .card h3 {
-      margin-top: 0;
-      font-size: 16px;
-      color: #d9534f;
-    }
-    .phone {
-      font-weight: bold;
-      font-size: 18px;
-      color: #28a745;
-      margin: 8px 0;
-    }
-    .card p {
-      font-size: 13px;
-      line-height: 1.5;
-      color: #555;
-    }
-    .info-box {
-      background: #fff;
-      padding: 15px;
-      border-radius: 8px;
-      margin-top: 15px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      border-left: 5px solid #1b365d;
-    }
-    .info-box h3 {
-      margin-top: 0;
-      color: #1b365d;
-    }
-    .info-box p, .info-box li {
-      font-size: 14px;
-      line-height: 1.6;
-      color: #444;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 12px;
-      color: #777;
-      margin-top: 30px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>በባህሬን የኢትዮጵያውያን መረጃና ድጋፍ ማዕከል</title>
+    <style>
+        :root {
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-sub: #475569;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            direction: ltr;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            border-bottom: 4px solid var(--primary);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        header p {
+            margin-top: 8px;
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        /* Filter Controls */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .filter-btn {
+            background-color: #e2e8f0;
+            color: var(--text-main);
+            border: none;
+            padding: 10px 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+        }
+
+        /* Information Cards Layout */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .card.emergency {
+            border-top: 4px solid var(--danger);
+        }
+
+        .card.legal {
+            border-top: 4px solid #8b5cf6;
+        }
+
+        .card.medical {
+            border-top: 4px solid #10b981;
+        }
+
+        .card-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .tag-emergency { background: #fee2e2; color: #991b1b; }
+        .tag-legal { background: #f3e8ff; color: #6b21a8; }
+        .tag-medical { background: #d1fae5; color: #065f46; }
+
+        .card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.15rem;
+        }
+
+        .card p {
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .phone-btn {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 10px 0;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.2s ease;
+        }
+
+        .phone-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-sub);
+            font-size: 0.85rem;
+            margin-top: 40px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        /* Hide elements when filtered */
+        .hide {
+            display: none;
+        }
+    </style>
 </head>
 <body>
 
-  <header>
-    <h1>በባህሬን የኢትዮጵያውያን መረጃና ድጋፍ ማዕከል</h1>
-    <p>Ethiopian Community Support & Information Hub in Bahrain</p>
-  </header>
+    <header>
+        <h1>በባህሬን የኢትዮጵያውያን መረጃና ድጋፍ</h1>
+        <p>Ethiopian Community Support & Information Hub in Bahrain</p>
+    </header>
 
-  <div class="container">
+    <div class="container">
+        
+        <!-- Category Selection Menu -->
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterCategory('all')">ሁሉንም አሳይ (All)</button>
+            <button class="filter-btn" onclick="filterCategory('emergency')">🚨 ድንገተኛ አደጋ (Emergency)</button>
+            <button class="filter-btn" onclick="filterCategory('legal')">⚖️ LMRA እና ህግ (Legal/Visa)</button>
+            <button class="filter-btn" onclick="filterCategory('medical')">🏥 ህክምናና ሆስፒታል (Medical)</button>
+        </div>
 
-    <!-- አስቸኳይ ጊዜ ስልኮች -->
-    <div class="section-title">🚨 የአደጋና የአስቸኳይ ጊዜ ስልኮች (Emergency Contacts)</div>
-    <div class="grid">
-      <div class="card">
-        <h3>ፖሊስ / አምቡላንስ / እሳት አደጋ</h3>
-        <div class="phone">999</div>
-        <p>ለማንኛውም አስቸኳይ አደጋ፣ ጥቃት፣ የህክምና እገዛ ወይም ድንገተኛ አደጋ በነጻ የሚደወል ዋና ቁጥር።</p>
-      </div>
+        <!-- Cards Container -->
+        <div class="info-grid">
 
-      <div class="card">
-        <h3>የሰዎች ዝውውር ጥቆማና መብት ጥሰት</h3>
-        <div class="phone">995</div>
-        <p>የህገ-ወጥ ስራ ማስገደድ፣ የደመወዝ ከልከላ ወይም የአካላዊ ጥቃት ሲደርስብህ የምትደውለው የ LMRA መስመር።</p>
-      </div>
+            <!-- Card 1 -->
+            <div class="card emergency">
+                <span class="card-tag tag-emergency">ድንገተኛ አደጋ</span>
+                <h3>ፖሊስ / አምቡላንስ / እሳት አደጋ</h3>
+                <p>ለማንኛውም አስቸኳይ አደጋ፣ ጥቃት፣ የህክምና እገዛ ወይም ድንገተኛ አደጋ በነፃ የሚደወል ዋና ቁጥር።</p>
+                <a href="tel:999" class="phone-btn">📞 ደውል: 999</a>
+            </div>
 
-      <div class="card">
-        <h3>የትራፊክ አደጋ (Traffic Emergency)</h3>
-        <div class="phone">199</div>
-        <p>የመኪና አደጋ ወይም መንገድ ላይ ድንገተኛ ችግር ሲያጋጥም የሚደወል ቁጥር።</p>
-      </div>
+            <!-- Card 2 -->
+            <div class="card emergency">
+                <span class="card-tag tag-emergency">ጥቆማና አደጋ</span>
+                <h3>የሰዎች ዝውውር ጥቆማ (LMRA)</h3>
+                <p>የህገ-ወጥ ስራ ማሰደድ፣ ደመወዝ መከልከል ወይም አካላዊ ጥቃት ሲደርስብህ የሚደወል የ LMRA መስመር።</p>
+                <a href="tel:995" class="phone-btn">📞 ደውል: 995</a>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card emergency">
+                <span class="card-tag tag-emergency">የትራፊክ አደጋ</span>
+                <h3>የትራፊክ አደጋ (Traffic Emergency)</h3>
+                <p>የመኪና አደጋ ወይም መንገድ ላይ ድንገተኛ ችግር ሲያጋጥም የሚደወል ቁጥር።</p>
+                <a href="tel:199" class="phone-btn">📞 ደውል: 199</a>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card legal">
+                <span class="card-tag tag-legal">LMRA & Visa</span>
+                <h3>የሰራተኞች ጥበቃና የስራ አካል (LMRA)</h3>
+                <p>የቪዛ ሁኔታን ለማረጋገጥ፣ የፓስፖርት መያዝ አቤቱታ ለማቅረብና ህጋዊ የመብት ጥያቄዎችን ለመጠየቅ።</p>
+                <a href="tel:+97317506055" class="phone-btn">📞 ደውል: +973 1750 6055</a>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="card medical">
+                <span class="card-tag tag-medical">ሆስፒታል</span>
+                <h3>ሳልማኒያ ህክምና ማዕከል (Salmaniya Hospital)</h3>
+                <p>በመናማ የሚገኝ ትልቁ የመንግስት ሆስፒታል (ለአስቸኳይ ህክምናና ድንገተኛ አደጋዎች)።</p>
+                <a href="tel:+97317288888" class="phone-btn">📞 ደውል: +973 1728 8888</a>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="card medical">
+                <span class="card-tag tag-medical">ሆስፒታል</span>
+                <h3>ኪንግ ሀማድ ዩኒቨርሲቲ ሆስፒታል</h3>
+                <p>በሙሀረቅ የሚገኝ ትልቅ የመንግስት ህክምና ማዕከል።</p>
+                <a href="tel:+97317444444" class="phone-btn">📞 ደውል: +973 1744 4444</a>
+            </div>
+
+        </div>
+
     </div>
 
-    <!-- የሆስፒታሎችና ህክምና መረጃ -->
-    <div class="section-title">🏥 የሆስፒታሎችና የህክምና ማዕከላት ስልኮች</div>
-    <div class="grid">
-      <div class="card">
-        <h3>ሳልማኒያ ህክምና ማዕከል (Salmaniya Hospital)</h3>
-        <div class="phone">+973 1728 8888</div>
-        <p>በማናማ የሚገኝ ትልቁ የመንግስት ሆስፒታል (ለአስቸኳይ ህክምናና ድንገተኛ አደጋዎች)።</p>
-      </div>
+    <footer>
+        <p>&copy; 2026 Ethiopian Support Hub in Bahrain. All rights reserved.</p>
+    </footer>
 
-      <div class="card">
-        <h3>ኪንግ ሀማድ ዩኒቨርሲቲ ሆስፒታል</h3>
-        <div class="phone">+973 1744 4444</div>
-        <p>በሙሃራቅ የሚገኝ ትልቅ የመንግስት ህክምና ማዕከል።</p>
-      </div>
-    </div>
+    <!-- Filter Logic Script -->
+    <script>
+        function filterCategory(category) {
+            const cards = document.querySelectorAll('.card');
+            const buttons = document.querySelectorAll('.filter-btn');
 
-    <!-- የቪዛ፣ ህግና የስራ ጉዳዮች (LMRA & Flexi/LMRA Status) -->
-    <div class="section-title">📄 የቪዛ፣ የስራና የህግ መረጃዎች (LMRA & Visa Issues)</div>
-    
-    <div class="info-box">
-      <h3>1. የሰራተኞች ጥProtectionና የስራ አካል (LMRA - Labour Market)</h3>
-      <p><strong>ስልክ ቁጥር፦</strong> <span class="phone">+973 1750 6055</span></p>
-      <p><strong>ዋና አገልግሎቶች፦</strong></p>
-      <ul>
-        <li>የስራ ቪዛህን/ቃማህን (Work Permit Status) ሁኔታ ማረጋገጥ።</li>
-        <li>የአላማሬ (የቀጣሪ) እና የሰራተኛ አለመግባባቶች ሲፈጠሩ አቤቱታ ማቅረብ።</li>
-        <li>ያለአግባብ ስራ ማቆም (Absconding/Runaway) ተብሎ ከተመዘገበብህ ማጣራት።</li>
-      </ul>
-    </div>
+            // Active button highlight
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
 
-    <div class="info-box">
-      <h3>2. የአላማሬ (የቀጣሪ) እና የቪዛ ሁኔታ መመሪያዎች</h3>
-      <ul>
-        <li><strong>የቪዛ ሁኔታህን ማረጋገጥ፦</strong> በየጊዜው በ LMRA ድህረ ገጽ (lmra.gov.bh) ላይ ፓስፖርት ቁጥርህን በማስገባት ቪዛህ ህጋዊ መሆኑን አረጋግጥ።</li>
-        <li><strong>ፓስፖርት መያዝ፦</strong> በቀጣሪ (አላማሬ) ፓስፖርት መያዝ በባህሬን ህግ የተከለከለ ነው። ችግር ካጋጠመህ ለ LMRA (995) ሪፖርት ማድረግ ትችላለህ።</li>
-        <li><strong>ደመወዝ አለመከፈል፦</strong> የባህሬን Wage Protection System ስላለ ደመወዝ ካልተከፈለህ እስከ 3 ወር ሳትጠብቅ አቤቱታ አቅርብ።</li>
-      </ul>
-    </div>
-
-    <!-- የኤምባሲና የቆንስላ መረጃ -->
-    <div class="section-title">🇪🇹 የኢትዮጵያ ኤምባሲና የቆንስላ ድጋፍ</div>
-    <div class="info-box">
-      <h3>የኤምባሲና የህግ ድጋፍ መረጃ</h3>
-      <p>ባህሬን ውስጥ የኢትዮጵያ ኤምባሲ ቀጥታ ባለመኖሩ አብዛኛዎቹ የባህሬን ኢትዮጵያውያን አገልግሎት የሚያገኙት በዶሃ (ካታር) ወይም በሪያድ በሚገኙ ኤምባሲዎች እና በባህሬን ባሉ የህብረተሰብ ተወካዮች/ቆንስላዎች በኩል ነው፦</p>
-      <ul>
-        <li><strong>የካታር ኤምባሲ ስልክ (ለባህሬን የሚሸፍን)፦</strong> +974 4020 7000</li>
-        <li><strong>የሳኡዲ (ሪያድ) ኤምባሲ ስልክ፦</strong> +966 11 482 3919</li>
-        <li><strong>የውጭ ሀገር ፓስፖርትና የጉዞ ሰነድ (Laissez-Passer)፦</strong> ፓስፖርት የጠፋብህ ወይም ወደ ሀገር መመለስ የምትፈልግ ከሆነ የቆንስላ ወኪሎችን በማነጋገር ጊዜያዊ የጉዞ ሰነድ ማዘጋጀት ይቻላል።</li>
-      </ul>
-    </div>
-
-    <!-- የደህንነት መመሪያዎች -->
-    <div class="section-title">🛡️ ለደህንነትህ የሚረዱ ዋና ዋና መመሪያዎች</div>
-    <div class="info-box">
-      <ul>
-        <li><strong>የሰነድ ኮፒ ይያዙ፦</strong> የፓስፖርትህ እና የ CPR (የባህሬን መታወቂያ) ፎቶ በስልክህ ላይ ወይም በኢሜይልህ ላይ ሁልጊዜ አዘጋጅተህ አስቀምጥ።</li>
-        <li><strong>ያልታወቁ ሊንኮችን አትክፈት፦</strong> የቪዛ ማደሻ ወይም የባንክ መረጃ የሚጠይቁ የሀሰት መልእክቶች ሲመጡ አትክፈታቸው።</li>
-        <li><strong>በአስቸኳይ ጊዜ፦</strong> ማንኛውም አደጋ ሲያጋጥም ወዲያውኑ ወደ <strong>999</strong> በመደወል ያለህበትን ቦታ (Address/Block number) ተናገር።</li>
-      </ul>
-    </div>
-
-  </div>
-
-  <footer>
-    <p>&copy; 2026 Ethiopian Community Support in Bahrain. All rights reserved.</p>
-  </footer>
-
+            // Filter functionality
+            cards.forEach(card => {
+                if (category === 'all') {
+                    card.classList.remove('hide');
+                } else {
+                    if (card.classList.contains(category)) {
+                        card.classList.remove('hide');
+                    } else {
+                        card.classList.add('hide');
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 </html>
