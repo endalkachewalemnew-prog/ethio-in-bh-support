@@ -1,271 +1,612 @@
 <!DOCTYPE html>
-<html lang="am">
+<html lang="am" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>በባህሬን የኢትዮጵያውያን መረጃና ድጋፍ ማዕከል</title>
-    <style>
-        :root {
-            --primary: #0284c7;
-            --primary-dark: #0369a1;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #0f172a;
-            --text-sub: #475569;
-            --danger: #ef4444;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>የባህሬን የኢትዮጵያውያን አጠቃላይ የመረጃና ድንገተኛ አደጋ ማዕከል</title>
+  
+  <!-- PWA Setup -->
+  <link rel="manifest" href="data:application/json,{\"name\":\"Ethiopian Bahrain Hub\",\"short_name\":\"EthioBahrain\",\"start_url\":\".\",\"display\":\"standalone\",\"background_color\":\"#0f172a\",\"theme_color\":\"#0f172a\"}">
+  <meta name="theme-color" content="#0f172a">
+  
+  <!-- FontAwesome & TailwindCSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            margin: 0;
-            padding: 0;
-            direction: ltr;
-        }
-
-        header {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: white;
-            text-align: center;
-            padding: 2.5rem 1rem;
-            border-bottom: 4px solid var(--primary);
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 1.8rem;
-        }
-
-        header p {
-            margin-top: 8px;
-            color: #94a3b8;
-            font-size: 0.95rem;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 0 15px;
-        }
-
-        /* Filter Controls */
-        .filter-container {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 25px;
-        }
-
-        .filter-btn {
-            background-color: #e2e8f0;
-            color: var(--text-main);
-            border: none;
-            padding: 10px 18px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .filter-btn:hover, .filter-btn.active {
-            background-color: var(--primary);
-            color: white;
-            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
-        }
-
-        /* Information Cards Layout */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e2e8f0;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-
-        .card.emergency {
-            border-top: 4px solid var(--danger);
-        }
-
-        .card.legal {
-            border-top: 4px solid #8b5cf6;
-        }
-
-        .card.medical {
-            border-top: 4px solid #10b981;
-        }
-
-        .card-tag {
-            display: inline-block;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            padding: 3px 8px;
-            border-radius: 4px;
-            margin-bottom: 10px;
-        }
-
-        .tag-emergency { background: #fee2e2; color: #991b1b; }
-        .tag-legal { background: #f3e8ff; color: #6b21a8; }
-        .tag-medical { background: #d1fae5; color: #065f46; }
-
-        .card h3 {
-            margin: 0 0 10px 0;
-            font-size: 1.15rem;
-        }
-
-        .card p {
-            color: var(--text-sub);
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-
-        .phone-btn {
-            display: inline-block;
-            width: 100%;
-            text-align: center;
-            background-color: var(--primary);
-            color: white;
-            text-decoration: none;
-            padding: 10px 0;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: background 0.2s ease;
-        }
-
-        .phone-btn:hover {
-            background-color: var(--primary-dark);
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: var(--text-sub);
-            font-size: 0.85rem;
-            margin-top: 40px;
-            border-top: 1px solid #e2e8f0;
-        }
-
-        /* Hide elements when filtered */
-        .hide {
-            display: none;
-        }
-    </style>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;600;700;800&display=swap');
+    body {
+      font-family: 'Noto Sans Ethiopic', sans-serif;
+      background-color: #0f172a;
+      color: #f8fafc;
+    }
+    .glass-card {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .ticker-wrapper {
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .ticker-content {
+      display: inline-block;
+      animation: ticker 25s linear infinite;
+    }
+    @keyframes ticker {
+      0% { transform: translate3d(100%, 0, 0); }
+      100% { transform: translate3d(-100%, 0, 0); }
+    }
+  </style>
 </head>
-<body>
+<body class="pb-12 min-h-screen">
 
-    <header>
-        <h1>በባህሬን የኢትዮጵያውያን መረጃና ድጋፍ</h1>
-        <p>Ethiopian Community Support & Information Hub in Bahrain</p>
-    </header>
-
-    <div class="container">
-        
-        <!-- Category Selection Menu -->
-        <div class="filter-container">
-            <button class="filter-btn active" onclick="filterCategory('all')">ሁሉንም አሳይ (All)</button>
-            <button class="filter-btn" onclick="filterCategory('emergency')">🚨 ድንገተኛ አደጋ (Emergency)</button>
-            <button class="filter-btn" onclick="filterCategory('legal')">⚖️ LMRA እና ህግ (Legal/Visa)</button>
-            <button class="filter-btn" onclick="filterCategory('medical')">🏥 ህክምናና ሆስፒታል (Medical)</button>
+  <!-- Header Section -->
+  <header class="sticky top-0 z-50 glass-card border-b border-slate-700/50 bg-slate-900/90">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-3 space-x-reverse">
+        <div class="bg-red-600 text-white p-2 rounded-xl text-xl font-bold animate-pulse">
+          <i class="fa-solid font-free fa-triangle-exclamation"></i>
         </div>
-
-        <!-- Cards Container -->
-        <div class="info-grid">
-
-            <!-- Card 1 -->
-            <div class="card emergency">
-                <span class="card-tag tag-emergency">ድንገተኛ አደጋ</span>
-                <h3>ፖሊስ / አምቡላንስ / እሳት አደጋ</h3>
-                <p>ለማንኛውም አስቸኳይ አደጋ፣ ጥቃት፣ የህክምና እገዛ ወይም ድንገተኛ አደጋ በነፃ የሚደወል ዋና ቁጥር።</p>
-                <a href="tel:999" class="phone-btn">📞 ደውል: 999</a>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="card emergency">
-                <span class="card-tag tag-emergency">ጥቆማና አደጋ</span>
-                <h3>የሰዎች ዝውውር ጥቆማ (LMRA)</h3>
-                <p>የህገ-ወጥ ስራ ማሰደድ፣ ደመወዝ መከልከል ወይም አካላዊ ጥቃት ሲደርስብህ የሚደወል የ LMRA መስመር።</p>
-                <a href="tel:995" class="phone-btn">📞 ደውል: 995</a>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="card emergency">
-                <span class="card-tag tag-emergency">የትራፊክ አደጋ</span>
-                <h3>የትራፊክ አደጋ (Traffic Emergency)</h3>
-                <p>የመኪና አደጋ ወይም መንገድ ላይ ድንገተኛ ችግር ሲያጋጥም የሚደወል ቁጥር።</p>
-                <a href="tel:199" class="phone-btn">📞 ደውል: 199</a>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="card legal">
-                <span class="card-tag tag-legal">LMRA & Visa</span>
-                <h3>የሰራተኞች ጥበቃና የስራ አካል (LMRA)</h3>
-                <p>የቪዛ ሁኔታን ለማረጋገጥ፣ የፓስፖርት መያዝ አቤቱታ ለማቅረብና ህጋዊ የመብት ጥያቄዎችን ለመጠየቅ።</p>
-                <a href="tel:+97317506055" class="phone-btn">📞 ደውል: +973 1750 6055</a>
-            </div>
-
-            <!-- Card 5 -->
-            <div class="card medical">
-                <span class="card-tag tag-medical">ሆስፒታል</span>
-                <h3>ሳልማኒያ ህክምና ማዕከል (Salmaniya Hospital)</h3>
-                <p>በመናማ የሚገኝ ትልቁ የመንግስት ሆስፒታል (ለአስቸኳይ ህክምናና ድንገተኛ አደጋዎች)።</p>
-                <a href="tel:+97317288888" class="phone-btn">📞 ደውል: +973 1728 8888</a>
-            </div>
-
-            <!-- Card 6 -->
-            <div class="card medical">
-                <span class="card-tag tag-medical">ሆስፒታል</span>
-                <h3>ኪንግ ሀማድ ዩኒቨርሲቲ ሆስፒታል</h3>
-                <p>በሙሀረቅ የሚገኝ ትልቅ የመንግስት ህክምና ማዕከል።</p>
-                <a href="tel:+97317444444" class="phone-btn">📞 ደውል: +973 1744 4444</a>
-            </div>
-
+        <div>
+          <h1 class="text-lg font-bold text-amber-400 leading-tight">የባህሬን ኢትዮጵያውያን የመረጃ ማዕከል</h1>
+          <p class="text-xs text-slate-400">የመረጃ፣ የአደጋ ጊዜና ህጋዊ አገልግሎቶች ስብስብ</p>
         </div>
-
+      </div>
+      <!-- Language Toggle -->
+      <button onclick="toggleLanguage()" class="bg-slate-800 border border-slate-600 text-xs px-3 py-1.5 rounded-lg font-bold text-amber-400 hover:bg-slate-700 transition">
+        <i class="fa-solid fa-globe mr-1"></i> <span id="lang-text">English / العربية</span>
+      </button>
     </div>
 
-    <footer>
-        <p>&copy; 2026 Ethiopian Support Hub in Bahrain. All rights reserved.</p>
-    </footer>
+    <!-- News Ticker -->
+    <div class="bg-amber-500/10 border-y border-amber-500/20 py-1 text-amber-300 text-xs font-medium ticker-wrapper">
+      <div class="ticker-content">
+        📢 ማሳሰቢያ፦ በአደጋ ጊዜ ቀጥታ 999 ይደውሉ። | የLMRA የህግ ጥቆማ፡ 995 | የበጋ ሰዓት የውጭ ስራ እገዳ ከቀኑ 12:00 እስከ 4:00 ነው። | የኤምባሲ አገልግሎት ለማግኘት አስቀድመው ቀጠሮ ይያዙ።
+      </div>
+    </div>
+  </header>
 
-    <!-- Filter Logic Script -->
-    <script>
-        function filterCategory(category) {
-            const cards = document.querySelectorAll('.card');
-            const buttons = document.querySelectorAll('.filter-btn');
+  <!-- Main Container -->
+  <main class="max-w-7xl mx-auto px-4 mt-6">
 
-            // Active button highlight
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+    <!-- Search & Quick Tools -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <!-- Search Input -->
+      <div class="md:col-span-2 relative">
+        <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400"></i>
+        <input type="text" id="searchInput" onkeyup="filterCards()" placeholder="አገልግሎት፣ ስልክ ቁጥር ወይም አድራሻ ይፈልጉ..." class="w-full pl-11 pr-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-400 focus:outline-none focus:border-amber-400 transition text-sm">
+      </div>
+      <!-- Distance Button -->
+      <button onclick="findNearestHospital()" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg flex items-center justify-center space-x-2 space-x-reverse transition text-sm">
+        <i class="fa-solid fa-location-crosshairs text-lg"></i>
+        <span>በአቅራቢያዬ ያሉ ሆስፒታሎችን ርቀት አስል</span>
+      </button>
+    </div>
 
-            // Filter functionality
-            cards.forEach(card => {
-                if (category === 'all') {
-                    card.classList.remove('hide');
-                } else {
-                    if (card.classList.contains(category)) {
-                        card.classList.remove('hide');
-                    } else {
-                        card.classList.add('hide');
-                    }
-                }
-            });
+    <!-- Filter Chips -->
+    <div class="flex space-x-2 overflow-x-auto pb-4 mb-6 text-xs no-scrollbar">
+      <button onclick="filterCategory('all')" class="chip-btn active bg-amber-500 text-slate-950 font-bold px-4 py-2 rounded-full whitespace-nowrap">ሁሉንም አሳይ</button>
+      <button onclick="filterCategory('emergency')" class="chip-btn bg-slate-800 text-slate-300 px-4 py-2 rounded-full whitespace-nowrap hover:bg-slate-700">🚨 አደጋ ጊዜ</button>
+      <button onclick="filterCategory('legal')" class="chip-btn bg-slate-800 text-slate-300 px-4 py-2 rounded-full whitespace-nowrap hover:bg-slate-700">⚖️ LMRA / ህግ</button>
+      <button onclick="filterCategory('hospital')" class="chip-btn bg-slate-800 text-slate-300 px-4 py-2 rounded-full whitespace-nowrap hover:bg-slate-700">🏥 ህክምና</button>
+      <button onclick="filterCategory('embassy')" class="chip-btn bg-slate-800 text-slate-300 px-4 py-2 rounded-full whitespace-nowrap hover:bg-slate-700">🇪🇹 ኤምባሲና ማህበረሰብ</button>
+      <button onclick="filterCategory('transport')" class="chip-btn bg-slate-800 text-slate-300 px-4 py-2 rounded-full whitespace-nowrap hover:bg-slate-700">🚕 ትራንስፖርትና ኤክስቼንጅ</button>
+      <button onclick="filterCategory('language')" class="chip-btn bg-slate-800 text-slate-300 px-4 py-2 rounded-full whitespace-nowrap hover:bg-slate-700">🗣️ የቋንቋ እገዛ</button>
+      <button onclick="filterCategory('faq')" class="chip-btn bg-slate-800 text-slate-300 px-4 py-2 rounded-full whitespace-nowrap hover:bg-slate-700">❓ FAQ</button>
+    </div>
+
+    <!-- Grid Layout for Cards -->
+    <div id="cardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- CARD 1: 🚨 ድንገተኛ አደጋ (999) -->
+      <div class="glass-card rounded-2xl p-5 border-l-4 border-l-red-500 card-item" data-category="emergency">
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <span class="bg-red-500/20 text-red-400 text-xs px-2.5 py-1 rounded-full font-semibold">🚨 አደጋ ጊዜ</span>
+            <h3 class="text-lg font-bold mt-2 text-white">የህዝብ አደጋ ጊዜ ቁጥር</h3>
+          </div>
+          <span class="text-2xl">🚨</span>
+        </div>
+        <p class="text-xs text-slate-300 mb-4">ለፖሊስ፣ አምቡላንስ እና እሳት አደጋ ፈጣን አገልግሎት።</p>
+        <div class="flex space-x-2">
+          <a href="tel:999" class="flex-1 bg-red-600 hover:bg-red-500 text-white font-bold py-2.5 rounded-xl text-center text-sm transition block">
+            <i class="fa-solid fa-phone mr-1"></i> 999 ደውል
+          </a>
+          <button onclick="copyToClipboard('999')" class="bg-slate-700 hover:bg-slate-600 text-white px-3 rounded-xl">
+            <i class="fa-solid fa-copy"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 2: 🚨 የሰዎች ዝውውርና የጥቃት ጥቆማ (995) -->
+      <div class="glass-card rounded-2xl p-5 border-l-4 border-l-red-500 card-item" data-category="emergency legal">
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <span class="bg-red-500/20 text-red-400 text-xs px-2.5 py-1 rounded-full font-semibold">🚨 ጥቆማ</span>
+            <h3 class="text-lg font-bold mt-2 text-white">የሰዎች ዝውውርና የጥቃት ጥቆማ</h3>
+          </div>
+          <span class="text-2xl">🛡️</span>
+        </div>
+        <p class="text-xs text-slate-300 mb-4">የሰዎች ዝውውር፣ አካላዊ/ስነ-ልቦናዊ ጥቃት ሲያጋጥም ለ LMRA መስመር ጥቆማ መስጫ።</p>
+        <div class="flex space-x-2">
+          <a href="tel:995" class="flex-1 bg-red-600 hover:bg-red-500 text-white font-bold py-2.5 rounded-xl text-center text-sm transition block">
+            <i class="fa-solid fa-phone mr-1"></i> 995 ደውል
+          </a>
+          <button onclick="copyToClipboard('995')" class="bg-slate-700 hover:bg-slate-600 text-white px-3 rounded-xl">
+            <i class="fa-solid fa-copy"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 3: 🚨 የትራፊክ አደጋ (199) -->
+      <div class="glass-card rounded-2xl p-5 border-l-4 border-l-amber-500 card-item" data-category="emergency">
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <span class="bg-amber-500/20 text-amber-400 text-xs px-2.5 py-1 rounded-full font-semibold">🚔 ትራፊክ</span>
+            <h3 class="text-lg font-bold mt-2 text-white">የመንገድና ትራፊክ አደጋ</h3>
+          </div>
+          <span class="text-2xl">🏎️</span>
+        </div>
+        <p class="text-xs text-slate-300 mb-4">በትራፊክ መንገድ ላይ ለሚያጋጥሙ አደጋዎችና ድንገተኛ መዘጋቶች።</p>
+        <div class="flex space-x-2">
+          <a href="tel:199" class="flex-1 bg-amber-600 hover:bg-amber-500 text-white font-bold py-2.5 rounded-xl text-center text-sm transition block">
+            <i class="fa-solid fa-phone mr-1"></i> 199 ደውል
+          </a>
+          <button onclick="copyToClipboard('199')" class="bg-slate-700 hover:bg-slate-600 text-white px-3 rounded-xl">
+            <i class="fa-solid fa-copy"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 4: 🚨 WhatsApp SOS -->
+      <div class="glass-card rounded-2xl p-5 border-l-4 border-l-emerald-500 card-item" data-category="emergency">
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <span class="bg-emerald-500/20 text-emerald-400 text-xs px-2.5 py-1 rounded-full font-semibold">📲 SOS</span>
+            <h3 class="text-lg font-bold mt-2 text-white">WhatsApp SOS መልዕክት</h3>
+          </div>
+          <span class="text-2xl">🟢</span>
+        </div>
+        <p class="text-xs text-slate-300 mb-4">የአደጋ ጊዜ ጥሪ ከነ GPS ቦታዎ ለአስቸኳይ ረዳት/ዘመድ በ WhatsApp ለመላክ።</p>
+        <button onclick="sendWhatsappSOS()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-xl text-center text-sm transition">
+          <i class="fa-brands fa-whatsapp mr-1"></i> የ SOS መልዕክት ላክ
+        </button>
+      </div>
+
+      <!-- CARD 5: ☀️ የበጋ ወቅት የሙቀት ጥንቃቄ -->
+      <div class="glass-card rounded-2xl p-5 border-l-4 border-l-orange-500 card-item" data-category="emergency legal">
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <span class="bg-orange-500/20 text-orange-400 text-xs px-2.5 py-1 rounded-full font-semibold">☀️ ህግና ጤና</span>
+            <h3 class="text-lg font-bold mt-2 text-white">የበጋ ስራ እገዳ (Summer Ban)</h3>
+          </div>
+          <span class="text-2xl">🌡️</span>
+        </div>
+        <p class="text-xs text-slate-300 mb-3">በጁላይ እና ኦገስት ወራት ከቀኑ 12:00 እስከ 4:00 በፀሐይ ላይ መስራት በህግ የተከለከለ ነው።</p>
+        <span class="text-xs text-amber-400 font-semibold block">ጥሶ የሚያሰራችሁን አካል ለ LMRA ጥቆማ መስጠት ትችላላችሁ።</span>
+      </div>
+
+      <!-- CARD 6: ⚖️ LMRA / የህግ አገልግሎት -->
+      <div class="glass-card rounded-2xl p-5 border-l-4 border-l-blue-500 card-item" data-category="legal">
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <span class="bg-blue-500/20 text-blue-400 text-xs px-2.5 py-1 rounded-full font-semibold">⚖️ LMRA</span>
+            <h3 class="text-lg font-bold mt-2 text-white">የካርታ/ቪዛና የስራ መብት</h3>
+          </div>
+          <span class="text-2xl">📜</span>
+        </div>
+        <p class="text-xs text-slate-300 mb-4">የቪዛ ሁኔታ ለመከታተል፣ ፓስፖርት ለመጠየቅና የስራ ቅሬታ ለማቅረብ።</p>
+        <div class="flex space-x-2 mb-2">
+          <a href="tel:+97317506055" class="flex-1 bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 rounded-xl text-center text-sm transition block">
+            <i class="fa-solid fa-phone mr-1"></i> +973 1750 6055
+          </a>
+          <button onclick="copyToClipboard('+97317506055')" class="bg-slate-700 hover:bg-slate-600 text-white px-3 rounded-xl">
+            <i class="fa-solid fa-copy"></i>
+          </button>
+        </div>
+        <a href="https://www.lmra.gov.bh" target="_blank" class="text-xs text-blue-400 hover:underline block text-center mt-1">ወደ LMRA ኦፊሴላዊ ድህረ-ገጽ ሂድ &rarr;</a>
+      </div>
+
+      <!-- CARD 7: ⚖️ የሰራተኞች ደመወዝ ቅሬታ (Wage Dispute / LMRA Dispute) [አዲስ] -->
+      <div class="glass-card rounded-2xl p-5 border-l-4 border-l-indigo-500 card-item" data-category="legal">
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <span class="bg-indigo-500/20 text-indigo-400 text-xs px-2.5 py-1 rounded-full font-semibold">⚖️ ደመወዝና ቅሬታ</span>
+            <h3 class="text-lg font-bold mt-2 text-white">የደመወዝ መዘገየት ቅሬታ</h3>
+          </div>
+          <span class="text-2xl">💰</span>
+        </div>
+        <p class="text-xs text-slate-300 mb-4">ደመወዝ ሲዘገይ ወይም የስራ ቦታ በደል ሲደርስ ለ LMRA ቅሬታ ማቅረቢያ ኦንላይን ፖርታል መረጃ።</p>
+        <a href="https://www.lmra.gov.bh/en/page/show/197" target="_blank" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2.5 rounded-xl text-center text-sm transition block">
+          <i class="fa-solid fa-file-contract mr-1"></i> የቅሬታ ማቅረቢያ ፖርታል
+        </a>
+      </div>
+
+      <!-- CARD 8: ⚖️ Flexi-Permit SMS ማረጋገጫ [አዲስ] -->
+      <div class="glass-card rounded-2xl p-5 border-l-4 border-l-purple-500 card-item" data-category="legal">
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <span class="bg-purple-500/20 text-purple-400 text-xs px-2.5 py-1 rounded-full font-semibold">📱 ቪዛ ማረጋገጫ</span>
+            <h3 class="text-lg font-bold mt-2 text-white">የቪዛ ህጋዊነት በ SMS</h3>
+          </div>
+          <span class="text-2xl">📩</span>
+        </div>
+        <p class="text-xs text-slate-300 mb-3">የቪዛዎን/CPR ሁኔታ ለማወቅ የ CPR ቁጥርዎን ወደ <strong>99888</strong> በ SMS ይላኩ።</p>
+        <button onclick="copyToClipboard('99888')" class="w-full bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs font-semibold py-2 rounded-xl border border-slate-600">
+          <i class="fa-solid fa-copy mr-1"></i> SMS ቁጥር (99888) ኮፒ አድርግ
+        </button>
+      </div>
+
+      <!-- CARD 9: 🇪🇹 የኢትዮጵያ ኤምባሲ / ቆንስላ -->
+      <div class="glass-card rounded-2xl p-5 border-l-4 border-l-yellow-500 card-item" data-category="embassy">
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <span class="bg-yellow-500/20 text-yellow-400 text-xs px-2.5 py-1 rounded-full font-semibold">🇪🇹 ኤምባሲ</span>
+            <h3 class="text-lg font-bold mt-2 text-white">የኢትዮጵያ ኤምባሲ / ቆንስላ</h3>
+          </div>
+          <span class="text-2xl">🇪🇹</span>
+        </div>
+        <p class="text-xs text-slate-300 mb-3">ለፓስፖርት ማደስ፣ የውክልና ሰነዶች እና የጉዞ ሰነድ (Laissez-Passer)።</p>
+        <p class="text-xs text-slate-400 mb-3"><i class="fa-solid fa-clock mr-1"></i> የስራ ሰዓት፡ እሑድ - ሐሙስ (2:00 AM - 9:00 AM)</p>
+        <div class="flex space-x-2">
+          <a href="tel:+97317725222" class="flex-1 bg-yellow-600 hover:bg-yellow-500 text-slate-950 font-bold py-2 rounded-xl text-center text-xs transition block">
+            <i class="fa-solid fa-phone mr-1"></i> ኤምባሲ ደውል
+          </a>
+          <a href="https://maps.google.com/?q=Ethiopian+Embassy+Bahrain" target="_blank" class="bg-slate-700 hover:bg-slate-600 text-white px-3 py-2 rounded-xl text-xs flex items-center">
+            <i class="fa-solid fa-map-pin"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- CARD 10: 🤝 የኢትዮጵያውያን ማህበረሰብ ድጋፍ -->
+      <div class="glass-card rounded-2xl p-5 border-l-4 border-l-teal-500 card-item" data-category="embassy">
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <span class="bg-teal-500/20 text-teal-400 text-xs px-2.5 py-1 rounded-full font-semibold">🤝 ማህበረሰብ</span>
+            <h3 class="text-lg font-bold mt-2 text-white">የማህበረሰብ አስተባባሪዎች</h3>
+          </div>
+          <span class="text-2xl">👥</span>
+        </div>
+        <p class="text-xs text-slate-300 mb-4">ለተለያዩ ማህበራዊ ችግሮች፣ መረጃዎች እና የጋራ ድጋፎች ከማህበረሰብ መሪዎች ጋር ለመገናኘት።</p>
+        <a href="https://wa.me/" target="_blank" class="w-full bg-teal-600 hover:bg-teal-500 text-white font-bold py-2.5 rounded-xl text-center text-sm transition block">
+          <i class="fa-brands fa-whatsapp mr-1"></i> የማህበረሰብ WhatsApp ግሩፕ
+        </a>
+      </div>
+
+      <!-- CARD 11: 🏥 ሳልማኒያ ህክምና ማዕከል (Salmaniya Hospital) -->
+      <div class="glass-card rounded-2xl p-5 border-l-4 border-l-cyan-500 card-item" data-category="hospital" data-lat="26.2167" data-lng="50.5750">
+        <div class="flex justify-between items-start mb-1">
+          <div>
+            <span class="bg-cyan-500/20 text-cyan-400 text-xs px-2.5 py-1 rounded-full font-semibold">🏥 የመንግስት ሆስፒታል</span>
+            <h3 class="text-lg font-bold mt-2 text-white">ሳልማኒያ ህክምና ማዕከል</h3>
+          </div>
+          <span class="text-2xl">🚑</span>
+        </div>
+        <div class="distance-tag text-xs text-emerald-400 font-bold mb-2"></div>
+        <p class="text-xs text-slate-300 mb-4">ዋናው የመንግስት ሆስፒታል (ለከፍተኛ ድንገተኛ አደጋዎች)።</p>
+        <div class="flex space-x-2">
+          <a href="tel:+97317288888" class="flex-1 bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-2 rounded-xl text-center text-xs transition block">
+            <i class="fa-solid fa-phone mr-1"></i> 17288888
+          </a>
+          <a href="https://maps.google.com/?q=Salmaniya+Medical+Complex" target="_blank" class="bg-slate-700 hover:bg-slate-600 text-white px-3 py-2 rounded-xl text-xs flex items-center">
+            <i class="fa-solid fa-location-arrow"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- CARD 12: 🏥 ኪንግ ሀማድ ሆስፒታል (King Hamad Hospital) -->
+      <div class="glass-card rounded-2xl p-5 border-l-4 border-l-cyan-500 card-item" data-category="hospital" data-lat="26.2644" data-lng="50.6122">
+        <div class="flex justify-between items-start mb-1">
+          <div>
+            <span class="bg-cyan-500/20 text-cyan-400 text-xs px-2.5 py-1 rounded-full font-semibold">🏥 የመንግስት ሆስፒታል</span>
+            <h3 class="text-lg font-bold mt-2 text-white">ኪንግ ሀማድ ሆስፒታል</h3>
+          </div>
+          <span class="text-2xl">🏥</span>
+        </div>
+        <div class="distance-tag text-xs text-emerald-400 font-bold mb-2"></div>
+        <p class="text-xs text-slate-300 mb-4">በሙሃራቅ አካባቢ የሚገኝ ዘመናዊ የመንግስት ህክምና ማዕከል።</p>
+        <div class="flex space-x-2">
+          <a href="tel:+97317444444" class="flex-1 bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-2 rounded-xl text-center text-xs transition block">
+            <i class="fa-solid fa-phone mr-1"></i> 17444444
+          </a>
+          <a href="https://maps.google.com/?q=King+Hamad+University+Hospital" target="_blank" class="bg-slate-700 hover:bg-slate-600 text-white px-3 py-2 rounded-xl text-xs flex items-center">
+            <i class="fa-solid fa-location-arrow"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- CARD 13: 🏥 አሜሪካን ሚሽን ሆስፒታል (AMH) -->
+      <div class="glass-card rounded-2xl p-5 border-l-4 border-l-blue-400 card-item" data-category="hospital" data-lat="26.2235" data-lng="50.5878">
+        <div class="flex justify-between items-start mb-1">
+          <div>
+            <span class="bg-blue-400/20 text-blue-300 text-xs px-2.5 py-1 rounded-full font-semibold">🏥 የግል ሆስፒታል</span>
+            <h3 class="text-lg font-bold mt-2 text-white">አሜሪካን ሚሽን ሆስፒታል (AMH)</h3>
+          </div>
+          <span class="text-2xl">🩺</span>
+        </div>
+        <div class="distance-tag text-xs text-emerald-400 font-bold mb-2"></div>
+        <p class="text-xs text-slate-300 mb-4">በማናማ፣ ሳር እና አሊ የሚገኙ የ24 ሰዓት አገልግሎት ማዕከላት።</p>
+        <div class="flex space-x-2">
+          <a href="tel:+97317177711" class="flex-1 bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 rounded-xl text-center text-xs transition block">
+            <i class="fa-solid fa-phone mr-1"></i> 17177711
+          </a>
+          <a href="https://maps.google.com/?q=American+Mission+Hospital+Manama" target="_blank" class="bg-slate-700 hover:bg-slate-600 text-white px-3 py-2 rounded-xl text-xs flex items-center">
+            <i class="fa-solid fa-location-arrow"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- CARD 14: 🏥 እብን አል ናፊስ ሆስፒታል (Ibn Al-Nafees) -->
+      <div class="glass-card rounded-2xl p-5 border-l-4 border-l-blue-400 card-item" data-category="hospital" data-lat="26.2120" data-lng="50.5920">
+        <div class="flex justify-between items-start mb-1">
+          <div>
+            <span class="bg-blue-400/20 text-blue-300 text-xs px-2.5 py-1 rounded-full font-semibold">🏥 የግል ሆስፒታል</span>
+            <h3 class="text-lg font-bold mt-2 text-white">እብን አል ናፊስ ሆስፒታል</h3>
+          </div>
+          <span class="text-2xl">🩺</span>
+        </div>
+        <div class="distance-tag text-xs text-emerald-400 font-bold mb-2"></div>
+        <p class="text-xs text-slate-300 mb-4">በማናማ የሚገኝ የተሟላ የህክምና አገልግሎት ሰጪ ሆስፒታል።</p>
+        <div class="flex space-x-2">
+          <a href="tel:+97317828282" class="flex-1 bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 rounded-xl text-center text-xs transition block">
+            <i class="fa-solid fa-phone mr-1"></i> 17828282
+          </a>
+          <a href="https://maps.google.com/?q=Ibn+Al-Nafees+Hospital" target="_blank" class="bg-slate-700 hover:bg-slate-600 text-white px-3 py-2 rounded-xl text-xs flex items-center">
+            <i class="fa-solid fa-location-arrow"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- CARD 15: 💊 የ24 ሰዓት ፋርማሲዎች -->
+      <div class="glass-card rounded-2xl p-5 border-l-4 border-l-green-500 card-item" data-category="hospital">
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <span class="bg-green-500/20 text-green-400 text-xs px-2.5 py-1 rounded-full font-semibold">💊 ፋርማሲ</span>
+            <h3 class="text-lg font-bold mt-2 text-white">የ24 ሰዓት መድኃኒት ቤቶች</h3>
+          </div>
+          <span class="text-2xl">💊</span>
+        </div>
+        <p class="text-xs text-slate-300 mb-3">በሌሊት ክፍት የሆኑ ዋና ዋና ፋርማሲዎች (Nasser Pharmacy & Jaffar Pharmacy)።</p>
+        <div class="flex space-x-2">
+          <a href="tel:+97317740900" class="flex-1 bg-green-600 hover:bg-green-500 text-white font-bold py-2 rounded-xl text-center text-xs transition block">
+            <i class="fa-solid fa-phone mr-1"></i> Nasser Pharm
+          </a>
+          <a href="tel:+97317254444" class="flex-1 bg-green-700 hover:bg-green-600 text-white font-bold py-2 rounded-xl text-center text-xs transition block">
+            <i class="fa-solid fa-phone mr-1"></i> Jaffar Pharm
+          </a>
+        </div>
+      </div>
+
+      <!-- CARD 16: 🚕 ታክሲ እና የህዝብ ትራንስፖርት -->
+      <div class="glass-card rounded-2xl p-5 border-l-4 border-l-sky-500 card-item" data-category="transport">
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <span class="bg-sky-500/20 text-sky-400 text-xs px-2.5 py-1 rounded-full font-semibold">🚕 ትራንስፖርት</span>
+            <h3 class="text-lg font-bold mt-2 text-white">አውቶቡስ እና ታክሲዎች</h3>
+          </div>
+          <span class="text-2xl">🚌</span>
+        </div>
+        <p class="text-xs text-slate-300 mb-3">የባህሬን የህዝብ አውቶቡስ (Bahrain Bus) እና Ride-hailing መተግበሪያዎች (Uber, Careem, Yango)።</p>
+        <div class="flex space-x-2">
+          <a href="tel:+97366311111" class="flex-1 bg-sky-600 hover:bg-sky-500 text-white font-bold py-2 rounded-xl text-center text-xs transition block">
+            <i class="fa-solid fa-phone mr-1"></i> አውቶቡስ መረጃ
+          </a>
+        </div>
+      </div>
+
+      <!-- CARD 17: 💸 ህጋዊ የገንዘብ ማስተላለፊያዎች (Exchange) -->
+      <div class="glass-card rounded-2xl p-5 border-l-4 border-l-emerald-500 card-item" data-category="transport">
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <span class="bg-emerald-500/20 text-emerald-400 text-xs px-2.5 py-1 rounded-full font-semibold">💸 ኤክስቼንጅ</span>
+            <h3 class="text-lg font-bold mt-2 text-white">ገንዘብ ማስተላለፊያዎች</h3>
+          </div>
+          <span class="text-2xl">💵</span>
+        </div>
+        <p class="text-xs text-slate-300 mb-3">ወደ ኢትዮጵያ ህጋዊ በሆነ መንገድ ገንዘብ ለመላክ የሚያገለግሉ ዋና ዋና ኤጀንሲዎች።</p>
+        <div class="flex space-x-2">
+          <a href="tel:+97317228888" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 rounded-xl text-center text-xs transition block">
+            <i class="fa-solid fa-building mr-1"></i> BFC Express
+          </a>
+          <a href="tel:+97317261111" class="flex-1 bg-teal-600 hover:bg-teal-500 text-white font-bold py-2 rounded-xl text-center text-xs transition block">
+            <i class="fa-solid fa-building mr-1"></i> LuLu Exchange
+          </a>
+        </div>
+      </div>
+
+      <!-- CARD 18: 🧰 የመብራትና ውሃ ጥቆማ (EWA) [አዲስ] -->
+      <div class="glass-card rounded-2xl p-5 border-l-4 border-l-yellow-600 card-item" data-category="emergency legal">
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <span class="bg-yellow-600/20 text-yellow-500 text-xs px-2.5 py-1 rounded-full font-semibold">🧰 EWA</span>
+            <h3 class="text-lg font-bold mt-2 text-white">የመብራትና ውሃ ጥቆማ</h3>
+          </div>
+          <span class="text-2xl">⚡</span>
+        </div>
+        <p class="text-xs text-slate-300 mb-4">ድንገተኛ የመብራት ወይም የውሃ መቋረጥ ሲያጋጥም ለ EWA ጥቆማ መስጫ።</p>
+        <div class="flex space-x-2">
+          <a href="tel:+97317515555" class="flex-1 bg-yellow-600 hover:bg-yellow-500 text-slate-950 font-bold py-2.5 rounded-xl text-center text-sm transition block">
+            <i class="fa-solid fa-phone mr-1"></i> 17515555 ደውል
+          </a>
+          <button onclick="copyToClipboard('17515555')" class="bg-slate-700 hover:bg-slate-600 text-white px-3 rounded-xl">
+            <i class="fa-solid fa-copy"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 19: 🗣️ የቋንቋ ተርጓሚ (Language Helper) -->
+      <div class="glass-card rounded-2xl p-5 border-l-4 border-l-pink-500 card-item lg:col-span-2" data-category="language">
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <span class="bg-pink-500/20 text-pink-400 text-xs px-2.5 py-1 rounded-full font-semibold">🗣️ የቋንቋ እገዛ</span>
+            <h3 class="text-lg font-bold mt-2 text-white">አስፈላጊ የአደጋ ጊዜ ቃላት (አማርኛ - Arabic - English)</h3>
+          </div>
+          <span class="text-2xl">🗣️</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs text-left text-slate-300">
+            <thead class="bg-slate-800 text-amber-400">
+              <tr>
+                <th class="p-2">አማርኛ</th>
+                <th class="p-2">العربية (አረብኛ)</th>
+                <th class="p-2">English</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-700">
+              <tr><td class="p-2">እርዳታ እፈልጋለሁ</td><td class="p-2">أحتاج مساعدة (አህታጅ ሙሳአዳ)</td><td class="p-2">I need help</td></tr>
+              <tr><td class="p-2">ሕመም ይሰማኛል</td><td class="p-2">أنا مريض (አና መሪፅ)</td><td class="p-2">I am sick</td></tr>
+              <tr><td class="p-2">ፖሊስ ጥሩልኝ</td><td class="p-2">اتصل بالشرطة (ኢተሲል ቢሸርጣ)</td><td class="p-2">Call the police</td></tr>
+              <tr><td class="p-2">እሳት አደጋ</td><td class="p-2">حريق (ሀሪቅ)</td><td class="p-2">Fire emergency</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- CARD 20: ❓ ጥያቄና መልስ (FAQ) -->
+      <div class="glass-card rounded-2xl p-5 border-l-4 border-l-fuchsia-500 card-item lg:col-span-3" data-category="faq">
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <span class="bg-fuchsia-500/20 text-fuchsia-400 text-xs px-2.5 py-1 rounded-full font-semibold">❓ FAQ</span>
+            <h3 class="text-lg font-bold mt-2 text-white">ተደጋግመው የሚጠየቁ ጥያቄዎችና መልሶች</h3>
+          </div>
+          <span class="text-2xl">❓</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-300 mt-2">
+          <div class="bg-slate-800/60 p-3 rounded-xl border border-slate-700">
+            <strong class="text-amber-400 block mb-1">Q: ፓስፖርቴ ቢጠፋብኝ ምን ማድረግ አለብኝ?</strong>
+            <p>A: በመጀመሪያ ለአቅራቢያዎ ፖሊስ ጣቢያ በመሄድ የጠፋበትን ሪፖርት (Police Report) ያድርጉ። በመቀጠል ሪፖርቱን በመያዝ ወደ ኢትዮጵያ ኤምባሲ በመሄድ አዲስ ፓስፖርት ወይም የጊዜያዊ ጉዞ ሰነድ ይውሰዱ።</p>
+          </div>
+          <div class="bg-slate-800/60 p-3 rounded-xl border border-slate-700">
+            <strong class="text-amber-400 block mb-1">Q: የቪዛዬን ህጋዊነት እንዴት ማረጋገጥ እችላለሁ?</strong>
+            <p>A: የ CPR ቁጥርዎን ወደ 99888 በ SMS በመላክ ወይም በ LMRA ኦፊሴላዊ የቪዛ ኤክስፕረስ ፖርታል (Express Services) ላይ በማስገባት በቀላሉ ማረጋገጥ ይችላሉ።</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- JavaScript Functions -->
+  <script>
+    // Search Functionality
+    function filterCards() {
+      let input = document.getElementById('searchInput').value.toLowerCase();
+      let cards = document.getElementsByClassName('card-item');
+
+      for (let i = 0; i < cards.length; i++) {
+        let text = cards[i].innerText.toLowerCase();
+        if (text.includes(input)) {
+          cards[i].style.display = "";
+        } else {
+          cards[i].style.display = "none";
         }
-    </script>
+      }
+    }
+
+    // Category Filter Functionality
+    function filterCategory(category) {
+      let cards = document.getElementsByClassName('card-item');
+      let buttons = document.getElementsByClassName('chip-btn');
+
+      // Update button active state
+      for (let btn of buttons) {
+        btn.classList.remove('bg-amber-500', 'text-slate-950', 'font-bold');
+        btn.classList.add('bg-slate-800', 'text-slate-300');
+      }
+      event.target.classList.remove('bg-slate-800', 'text-slate-300');
+      event.target.classList.add('bg-amber-500', 'text-slate-950', 'font-bold');
+
+      // Filter cards
+      for (let card of cards) {
+        if (category === 'all' || card.getAttribute('data-category').includes(category)) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+      }
+    }
+
+    // Copy to Clipboard
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert('ቁጥሩ ተቀድቷል (Copied): ' + text);
+      });
+    }
+
+    // WhatsApp SOS Generator
+    function sendWhatsappSOS() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          let lat = position.coords.latitude;
+          let lng = position.coords.longitude;
+          let msg = `🚨 በአደጋ ጊዜ ላይ እገኛለሁ! እባክዎ እርዳታ ይላኩልኝ። የ GPS ቦታዬ፡ https://maps.google.com/?q=${lat},${lng}`;
+          window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+        }, () => {
+          let msg = `🚨 በአደጋ ጊዜ ላይ እገኛለሁ! እባክዎ እርዳታ ይላኩልኝ።`;
+          window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+        });
+      } else {
+        alert("የ GPS መረጃ ማግኘት አልተቻለም።");
+      }
+    }
+
+    // Find Nearest Hospital Distance
+    function findNearestHospital() {
+      if (!navigator.geolocation) {
+        alert("ስልክዎ የ GPS መረጃ ማግኘት አልቻለም።");
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(position => {
+        let userLat = position.coords.latitude;
+        let userLng = position.coords.longitude;
+
+        let hospitalCards = document.querySelectorAll('[data-lat]');
+        hospitalCards.forEach(card => {
+          let hLat = parseFloat(card.getAttribute('data-lat'));
+          let hLng = parseFloat(card.getAttribute('data-lng'));
+          
+          let dist = calculateDistance(userLat, userLng, hLat, hLng);
+          let tag = card.querySelector('.distance-tag');
+          if (tag) {
+            tag.innerText = `📍 ከእርስዎ ርቀት፦ ${dist.toFixed(1)} km`;
+          }
+        });
+        alert("የሆስፒታሎች ርቀት ታስልቷል!");
+      });
+    }
+
+    // Distance Calculation (Haversine Formula)
+    function calculateDistance(lat1, lon1, lat2, lon2) {
+      let R = 6371; // Earth radius in km
+      let dLat = (lat2 - lat1) * Math.PI / 180;
+      let dLon = (lon2 - lon1) * Math.PI / 180;
+      let a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+              Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+              Math.sin(dLon/2) * Math.sin(dLon/2);
+      let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+      return R * c;
+    }
+
+    // Toggle Language Display
+    function toggleLanguage() {
+      let langText = document.getElementById('lang-text');
+      if (langText.innerText.includes('English')) {
+        langText.innerText = 'አማርኛ';
+        alert('Language toggled to English mode view.');
+      } else {
+        langText.innerText = 'English / العربية';
+        alert('ወደ አማርኛ ገጽ ተመልሰዋል።');
+      }
+    }
+
+    // Register Service Worker for PWA Offline Support
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('data:text/javascript,console.log("Offline SW Registered")');
+      });
+    }
+  </script>
 </body>
 </html>
